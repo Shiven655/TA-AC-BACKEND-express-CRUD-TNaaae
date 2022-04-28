@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
-const path = require('path');
+
 var app = express();
 mongoose.connect(' mongodb://127.0.0.1:27017/user-diary', (err) => {
   console.log(err ? err : 'connected to Database');
@@ -9,6 +9,7 @@ mongoose.connect(' mongodb://127.0.0.1:27017/user-diary', (err) => {
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 //middlewares
+app.use('/user', require('./routes/user'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //404 error
